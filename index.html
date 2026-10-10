@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f6f5f1">
+<title>Idea Vault — Private Idea Intelligence</title>
+<meta name="description" content="An encrypted personal archive of ideas, evidence, experiments, and decisions.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.gate-panel{max-width:510px;min-height:calc(100vh - 150px);padding:105px 0 60px}
+.gate-panel h1{font-size:clamp(48px,6.7vw,78px);line-height:.99;letter-spacing:-4px;font-weight:500;margin:0}
+.gate-panel h1 em{font-family:'Playfair Display',serif;font-weight:500;color:var(--green)}
+.gate-panel form{margin-top:30px}.gate-panel label{display:block;font:10px 'DM Mono',monospace;letter-spacing:1px;color:var(--muted);margin-bottom:10px}
+.password-row{display:flex;gap:8px}.password-row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:5px;background:var(--white);padding:14px 13px;font:14px 'DM Sans',sans-serif;outline:none}.password-row input:focus{border-color:#819b81;box-shadow:0 0 0 3px #355c4714}
+.password-row button{border:0;border-radius:5px;background:var(--green);color:white;padding:0 21px;font:600 12px 'DM Sans',sans-serif;cursor:pointer}.password-row button:disabled{opacity:.7;cursor:wait}
+.error{font-size:12px;color:#a43f32;margin:12px 0 0}.gate-note{border-top:1px solid var(--line);padding-top:17px;margin-top:25px;display:flex;gap:10px;color:#7c8178;font-size:11px;line-height:1.7}.gate-note span{color:var(--green);font-size:15px}
+.lock-chip{font:10px 'DM Mono',monospace;color:var(--green);border:1px solid #cad7c9;border-radius:4px;padding:8px 10px}.lock-again{border:1px solid var(--line);border-radius:4px;background:transparent;padding:10px;color:#666d62;font:11px 'DM Sans',sans-serif;cursor:pointer}
+@media(max-width:760px){.gate-panel{padding:75px 0 50px}.gate-panel h1{letter-spacing:-2.8px}.password-row button{padding:0 15px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./"><span class="brand-mark">✳</span><span>idea<span class="brand-light">vault</span></span></a><span class="top-note">ENCRYPTED PERSONAL ARCHIVE</span><span class="lock-chip">⌑ Browser unlock</span></header>
+<main class="shell">
+<section id="gate" class="gate-panel">
+<p class="eyebrow">PRIVATE WORKSPACE</p><h1>Your ideas,<br><em>under lock.</em></h1>
+<p class="hero-copy">Enter your passphrase to decrypt the idea archive in this browser. The passphrase is not saved or sent to a server.</p>
+<form id="unlock-form" autocomplete="off"><label for="passphrase">PASSPHRASE</label><div class="password-row"><input id="passphrase" type="password" placeholder="Enter passphrase" autocomplete="current-password" required autofocus><button id="unlock" type="submit">Unlock ↗</button></div><p id="unlock-error" class="error" role="alert" hidden>That passphrase did not unlock the archive. Try again.</p><p class="gate-note"><span>⌑</span> Idea content is encrypted in the site files and decrypted locally. This is a lightweight privacy layer, not a substitute for server-side authentication.</p></form>
+</section>
+<section id="vault" hidden>
+<section class="hero"><p class="eyebrow">YOUR IDEAS, GIVEN ROOM TO GROW</p><h1>Good ideas deserve<br><em>more than a chat.</em></h1><p class="hero-copy">A living archive of things worth exploring — from rough sparks to researched, tested, real-world possibilities.</p><div class="hero-stats"><div><strong id="idea-count">04</strong><span>IDEAS CAPTURED</span></div><div><strong>05</strong><span>RESEARCH LENSES</span></div><div><strong>∞</strong><span>POSSIBILITIES</span></div></div></section>
+<section class="toolbar"><label class="searchbox"><span>⌕</span><input id="search" type="search" placeholder="Search ideas, problems, tags…" autocomplete="off"></label><div id="filters" class="filters"><button class="filter active" data-filter="All">All ideas <span id="all-count">4</span></button><button class="filter" data-filter="Product">Product</button><button class="filter" data-filter="AI / ML">AI / ML</button><button class="filter" data-filter="Research">Research</button></div><select id="status-filter" aria-label="Filter by status"><option value="All">All statuses</option><option value="Exploring">Exploring</option><option value="Validating">Validating</option><option value="Building">Building</option><option value="Parked">Parked</option><option value="Rejected">Rejected</option></select><button id="lock-again" class="lock-again" type="button">Lock archive</button></section>
+<section class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>Ideas in progress <span id="result-count">04</span></h2></div><span class="sort-note">Sorted by capture date</span></section>
+<section id="idea-grid" class="idea-grid" aria-live="polite"></section><section id="empty-state" class="empty-state" hidden><span>⌕</span><h3>No matching ideas</h3><p>Try another keyword or clear your filters.</p><button id="clear-filters" class="text-button">Clear filters ↗</button></section>
+<section class="method"><div class="method-intro"><p class="eyebrow">THE METHOD</p><h2>Curiosity is the start.<br><em>Evidence is the filter.</em></h2><p>Every idea should evolve through clear thinking, real-world evidence, and deliberate experiments — not enthusiasm alone.</p></div><div class="method-steps"><article><span>01</span><div><h3>Capture</h3><p>Preserve the original thought and the context around it.</p></div></article><article><span>02</span><div><h3>Investigate</h3><p>Find users, alternatives, credible sources, and counter-evidence.</p></div></article><article><span>03</span><div><h3>Test</h3><p>Design the smallest experiment that can change your mind.</p></div></article><article><span>04</span><div><h3>Decide</h3><p>Build, refine, park, or reject — with a reason recorded.</p></div></article></div></section>
+</section>
+<footer><span>IDEA VAULT · ENCRYPTED ARCHIVE</span><a href="https://github.com/KrishnaAgarwal2206/idea-vault" target="_blank" rel="noreferrer">Source repository ↗</a></footer>
+</main>
+<dialog id="idea-dialog" class="idea-dialog"><button id="dialog-close" class="dialog-close" aria-label="Close detail">×</button><div id="dialog-content"></div></dialog>
+<script src="vault-data.js"></script><script src="app.js"></script>
+</body></html>
